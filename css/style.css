@@ -1,1 +1,62 @@
+/* 网页整体背景：使用了淡淡的紫色调 */
+body {
+    background-color: #f9f5fc;
+    font-family: sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
 
+/* 音乐播放器卡片主体 */
+.music-card {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    /* 柔和的果冻感阴影 */
+    box-shadow: 0 12px 30px rgba(160, 100, 220, 0.15); 
+}
+
+/* 头像图片样式 */
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    /* 头像也增加一点淡淡的果冻阴影 */
+    box-shadow: 0 8px 20px rgba(160, 100, 220, 0.3);
+    /* 增加一个慢慢旋转的动画准备给 JS 用 */
+    transition: transform 0.3s ease;
+}
+
+/* 胶囊形状的播放按钮 */
+.play-btn {
+    background-color: #b18bd6; /* 紫色按钮 */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 9999px; /* 让按钮变成圆润的胶囊状 */
+    box-shadow: 0 6px 16px rgba(177, 139, 214, 0.4); /* 按钮的果冻阴影 */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+/* 鼠标悬停在按钮上的动画效果 */
+.play-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(177, 139, 214, 0.6);
+}
+
+/* 点击按钮时的效果 */
+.play-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(177, 139, 214, 0.4);
+}
