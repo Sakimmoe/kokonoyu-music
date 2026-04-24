@@ -10,7 +10,6 @@ body {
     margin: 0;
 }
 
-/* 卡片主体 */
 .music-card {
     background: white;
     border-radius: 30px;
@@ -19,6 +18,7 @@ body {
     max-width: 380px;
     text-align: center;
     box-shadow: 0 15px 35px rgba(160, 100, 220, 0.12);
+    position: relative; /* 为绝对定位提供参考 */
 }
 
 .song-name {
@@ -35,7 +35,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* 头像与旋转动画 */
 .avatar {
     width: 130px;
     height: 130px;
@@ -56,7 +55,6 @@ body {
 .fade-transition { transition: opacity 0.4s ease; }
 .fade-out { opacity: 0; }
 
-/* 进度条 */
 .progress-container {
     background: #f1ebf7;
     border-radius: 9999px;
@@ -75,26 +73,41 @@ body {
     box-shadow: 0 3px 10px rgba(177, 139, 214, 0.5);
 }
 
-/* ===== 纯图标按钮（播放模式专用） ===== */
-.theme-icon-btn {
+/* ===== 按钮控制区优化 ===== */
+.controls-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* 用于模式按钮定位 */
+    margin-bottom: 25px;
+    min-height: 50px;
+}
+
+/* 播放按钮组 - 严格居中 */
+.play-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 模式按钮 - 粉色且靠左 */
+.pink-mode {
     background: transparent;
     border: none;
     font-size: 20px;
-    color: #a578d6; /* 网站主题紫色 */
+    color: #ff85c0; /* 要求的粉色 */
     cursor: pointer;
     transition: all 0.2s ease;
     padding: 5px;
-    margin-right: 5px;
+    position: absolute;
+    left: 0; /* 移到最左边 */
 }
-.theme-icon-btn:hover {
-    transform: scale(1.15); /* 鼠标悬停时微微变大 */
-    color: #8556b5; /* 鼠标悬停时颜色加深 */
-}
-.theme-icon-btn:active {
-    transform: scale(0.95);
+.pink-mode:hover {
+    transform: scale(1.15);
+    color: #f759ab;
 }
 
-/* 按钮统一样式 */
 .pill-btn {
     border: none;
     border-radius: 9999px;
@@ -107,20 +120,11 @@ body {
 .pill-btn:hover { transform: translateY(-4px); }
 .pill-btn:active { transform: translateY(1px); }
 
-/* 主控制区 */
-.controls-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px; /* 因为下面没歌词了，这里加一点下边距 */
-}
 .icon-btn { background-color: #d8c5ef; padding: 12px 18px; font-size: 14px; color: #6a4a9c; box-shadow: 0 6px 16px rgba(216, 197, 239, 0.5); }
 .icon-btn:hover { box-shadow: 0 10px 20px rgba(216, 197, 239, 0.7); }
 .play-btn { background-color: #a578d6; padding: 14px 35px; font-size: 16px; box-shadow: 0 8px 20px rgba(165, 120, 214, 0.4); }
 .play-btn:hover { box-shadow: 0 12px 25px rgba(165, 120, 214, 0.6); }
 
-/* 副控制区 */
 .controls-sub {
     display: flex;
     justify-content: center;
@@ -128,14 +132,12 @@ body {
 .list-btn {
     background-color: #f9f5fc;
     color: #a578d6;
-    padding: 8px 20px;
+    padding: 8px 25px;
     font-size: 13px;
     box-shadow: 0 4px 12px rgba(160, 100, 220, 0.15);
     border: 1px solid #eee5f7;
 }
-.list-btn:hover { box-shadow: 0 8px 18px rgba(160, 100, 220, 0.25); }
 
-/* 歌单区 */
 .playlist-wrapper {
     max-height: 0;
     overflow: hidden;
