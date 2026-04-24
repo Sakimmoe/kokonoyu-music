@@ -10,16 +10,17 @@
 <body>
 
     <div class="music-card">
-        <img src="images/avatar.jpg" alt="九重紫头像" class="avatar fade-transition" id="cover">
+        <img src="images/avatar.jpg" alt="封面" class="avatar fade-transition" id="cover">
         
-        <h2>九重紫 Kokonoe Yukari</h2>
-        <p id="song-title" class="fade-transition">♪ 准备播放</p>
+        <h2 id="song-title" class="song-name fade-transition">准备播放</h2>
+        <p class="artist-name">九重紫 Kokonoe Yukari</p>
         
         <div class="progress-container" id="progress-container">
             <div class="progress" id="progress"></div>
         </div>
         
         <div class="controls-main">
+            <button class="theme-icon-btn" id="mode-btn" title="切换播放模式">🔁</button>
             <button class="pill-btn icon-btn" id="prev-btn">⏮</button>
             <button class="pill-btn play-btn" id="play-btn">▶ 播放</button>
             <button class="pill-btn icon-btn" id="next-btn">⏭</button>
@@ -27,10 +28,6 @@
 
         <div class="controls-sub">
             <button class="pill-btn list-btn" id="playlist-btn">🎵 展开歌单</button>
-        </div>
-
-        <div class="lyrics-box">
-            <p id="lyrics-text">歌词将在这里显示...</p>
         </div>
 
         <div class="playlist-wrapper" id="playlist-wrapper">
