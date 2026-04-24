@@ -18,7 +18,7 @@ body {
     max-width: 380px;
     text-align: center;
     box-shadow: 0 15px 35px rgba(160, 100, 220, 0.12);
-    position: relative; /* 为绝对定位提供参考 */
+    position: relative; 
 }
 
 .song-name {
@@ -78,12 +78,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* 用于模式按钮定位 */
+    position: relative; 
     margin-bottom: 25px;
     min-height: 50px;
 }
 
-/* 播放按钮组 - 严格居中 */
 .play-group {
     display: flex;
     justify-content: center;
@@ -91,21 +90,32 @@ body {
     gap: 15px;
 }
 
-/* 模式按钮 - 粉色且靠左 */
+/* 模式按钮 - 升级为精致的粉色果冻小圆饼 */
 .pink-mode {
-    background: transparent;
-    border: none;
-    font-size: 20px;
-    color: #ff85c0; /* 要求的粉色 */
-    cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 5px;
     position: absolute;
-    left: 0; /* 移到最左边 */
+    left: 0;
+    background-color: #fff0f6; /* 超甜的淡粉色底 */
+    color: #ff85c0; /* 粉色图标 */
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%; /* 完美的圆形 */
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 6px 16px rgba(255, 133, 192, 0.35); /* 专属粉色果冻阴影 */
+    padding: 0; /* 去除多余内边距 */
 }
 .pink-mode:hover {
-    transform: scale(1.15);
-    color: #f759ab;
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 133, 192, 0.5);
+}
+.pink-mode:active {
+    transform: translateY(1px) scale(0.95);
+    box-shadow: 0 4px 10px rgba(255, 133, 192, 0.3);
 }
 
 .pill-btn {
