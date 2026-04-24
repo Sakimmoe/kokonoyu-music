@@ -27,7 +27,6 @@ const songs = [
 let songIndex = 0;
 let playMode = 0; 
 
-// 这里换成了专业的矢量图标库代码
 const modeIcons = [
     '<i class="fa-solid fa-repeat"></i> 列表循环',
     '<i class="fa-solid fa-shuffle"></i> 随机播放',
@@ -48,14 +47,12 @@ function loadSong(song) {
     }, 400); 
 }
 
-// 初始加载
 songTitle.innerText = songs[songIndex].name;
 audioPlayer.src = 'music/' + songs[songIndex].file;
 coverImg.src = 'images/' + songs[songIndex].cover;
 
 function playMusic() {
     setTimeout(() => { audioPlayer.play(); }, 400);
-    // 播放时换成暂停图标
     playBtn.innerHTML = '<i class="fa-solid fa-pause"></i> 暂停';
     coverImg.classList.add('spin');
     coverImg.classList.remove('paused');
@@ -63,7 +60,6 @@ function playMusic() {
 
 function pauseMusic() {
     audioPlayer.pause();
-    // 暂停时换回播放图标
     playBtn.innerHTML = '<i class="fa-solid fa-play"></i> 播放';
     coverImg.classList.add('paused');
 }
