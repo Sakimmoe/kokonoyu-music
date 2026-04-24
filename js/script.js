@@ -26,7 +26,13 @@ const songs = [
 
 let songIndex = 0;
 let playMode = 0; 
-const modeIcons = ['🔁', '🔀', '🔂'];
+
+// 这里换成了专业的矢量图标库代码
+const modeIcons = [
+    '<i class="fa-solid fa-repeat"></i> 列表循环',
+    '<i class="fa-solid fa-shuffle"></i> 随机播放',
+    '<i class="fa-solid fa-rotate-right"></i> 单曲循环'
+];
 
 function loadSong(song) {
     coverImg.classList.add('fade-out');
@@ -49,14 +55,16 @@ coverImg.src = 'images/' + songs[songIndex].cover;
 
 function playMusic() {
     setTimeout(() => { audioPlayer.play(); }, 400);
-    playBtn.innerText = '⏸ 暂停';
+    // 播放时换成暂停图标
+    playBtn.innerHTML = '<i class="fa-solid fa-pause"></i> 暂停';
     coverImg.classList.add('spin');
     coverImg.classList.remove('paused');
 }
 
 function pauseMusic() {
     audioPlayer.pause();
-    playBtn.innerText = '▶ 播放';
+    // 暂停时换回播放图标
+    playBtn.innerHTML = '<i class="fa-solid fa-play"></i> 播放';
     coverImg.classList.add('paused');
 }
 
@@ -96,7 +104,7 @@ nextBtn.addEventListener('click', nextMusic);
 
 modeBtn.addEventListener('click', () => {
     playMode = (playMode + 1) % 3;
-    modeBtn.innerText = modeIcons[playMode];
+    modeBtn.innerHTML = modeIcons[playMode];
 });
 
 function updateProgress(e) {
@@ -134,9 +142,9 @@ songs.forEach((song, index) => {
 playlistBtn.addEventListener('click', () => {
     if (playlistWrapper.style.maxHeight && playlistWrapper.style.maxHeight !== '0px') {
         playlistWrapper.style.maxHeight = '0';
-        playlistBtn.innerText = '展开歌单'; // 去掉了 🎵
+        playlistBtn.innerHTML = '<i class="fa-solid fa-list-ul"></i> 展开歌单'; 
     } else {
         playlistWrapper.style.maxHeight = '300px';
-        playlistBtn.innerText = '收起歌单'; // 去掉了 🎵
+        playlistBtn.innerHTML = '<i class="fa-solid fa-list-ul"></i> 收起歌单'; 
     }
 });
