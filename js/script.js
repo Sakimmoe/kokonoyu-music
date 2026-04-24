@@ -26,7 +26,6 @@ const songs = [
 
 let songIndex = 0;
 let playMode = 0; 
-// 这里只保留了纯图标
 const modeIcons = ['🔁', '🔀', '🔂'];
 
 function loadSong(song) {
@@ -69,7 +68,6 @@ function nextMusic() {
         }
         songIndex = randomIndex;
     } else if (playMode === 2) {
-        // 单曲循环，序号不变
     } else {
         songIndex++;
         if (songIndex > songs.length - 1) { songIndex = 0; }
@@ -136,9 +134,9 @@ songs.forEach((song, index) => {
 playlistBtn.addEventListener('click', () => {
     if (playlistWrapper.style.maxHeight && playlistWrapper.style.maxHeight !== '0px') {
         playlistWrapper.style.maxHeight = '0';
-        playlistBtn.innerText = '🎵 展开歌单';
+        playlistBtn.innerText = '展开歌单'; // 去掉了 🎵
     } else {
         playlistWrapper.style.maxHeight = '300px';
-        playlistBtn.innerText = '🎵 收起歌单';
+        playlistBtn.innerText = '收起歌单'; // 去掉了 🎵
     }
 });
