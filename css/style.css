@@ -60,3 +60,80 @@ body {
     transform: translateY(1px);
     box-shadow: 0 4px 10px rgba(177, 139, 214, 0.4);
 }
+/* 进度条外壳（胶囊状） */
+.progress-container {
+    background: #eee;
+    border-radius: 9999px;
+    cursor: pointer;
+    margin: 20px 0;
+    height: 8px;
+    width: 100%;
+    /* 内阴影，看起来像凹进去的槽 */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); 
+}
+
+/* 进度条进度（果冻色） */
+.progress {
+    background-color: #b18bd6;
+    border-radius: 9999px;
+    height: 100%;
+    width: 0%; /* 初始进度为0 */
+    transition: width 0.1s linear;
+    box-shadow: 0 2px 8px rgba(177, 139, 214, 0.6);
+}
+
+/* 所有的按钮统一使用胶囊和果冻阴影基础样式 */
+.pill-btn {
+    border: none;
+    border-radius: 9999px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 16px rgba(177, 139, 214, 0.4);
+}
+
+.pill-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(177, 139, 214, 0.6);
+}
+
+.pill-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(177, 139, 214, 0.4);
+}
+
+/* 控制按钮排版 */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* 按钮之间的间距 */
+    margin-top: 10px;
+}
+
+/* 播放按钮稍微大一点 */
+.play-btn {
+    background-color: #b18bd6;
+    padding: 12px 30px;
+    font-size: 16px;
+}
+
+/* 上一首/下一首按钮稍微小一点，颜色稍微浅一点 */
+.small-btn {
+    background-color: #c7a8e5;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* 歌词显示区 */
+.lyrics-box {
+    margin-top: 25px;
+    padding: 15px;
+    background: #fdfafc;
+    border-radius: 16px;
+    height: 60px;
+    overflow: hidden; /* 超出部分隐藏 */
+    color: #888;
+    font-size: 14px;
+    box-shadow: inset 0 4px 10px rgba(160, 100, 220, 0.08); /* 淡淡的内凹果冻感 */
+}
