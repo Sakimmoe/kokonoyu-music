@@ -22,11 +22,19 @@
             <button class="pill-btn small-btn" id="prev-btn">上一首</button>
             <button class="pill-btn play-btn" id="play-btn">播放</button>
             <button class="pill-btn small-btn" id="next-btn">下一首</button>
+            <button class="pill-btn small-btn" id="playlist-btn">≡ 歌单</button>
         </div>
 
         <div class="lyrics-box">
             <p id="lyrics-text">歌词将在这里显示...</p>
         </div>
+
+        <div class="playlist-box" id="playlist-box" style="display: none;">
+            <ul id="playlist-list"></ul>
+        </div>
+        
+        <audio id="audio-player" src="music/test.mp3"></audio>
+    </div>
         
         <audio id="audio-player" src="music/test.mp3"></audio>
     </div>
