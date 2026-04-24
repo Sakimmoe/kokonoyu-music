@@ -4,37 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>九重紫 Kokonoe Yukari 专属音乐站</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <div class="music-card">
-        <img src="images/avatar.jpg" alt="九重紫头像" class="avatar" id="cover">
+        <img src="images/avatar.jpg" alt="九重紫头像" class="avatar fade-transition" id="cover">
         
         <h2>九重紫 Kokonoe Yukari</h2>
-        <p id="song-title">♪ 准备播放</p>
+        <p id="song-title" class="fade-transition">♪ 准备播放</p>
         
         <div class="progress-container" id="progress-container">
             <div class="progress" id="progress"></div>
         </div>
         
-        <div class="controls">
-            <button class="pill-btn small-btn" id="prev-btn">上一首</button>
-            <button class="pill-btn play-btn" id="play-btn">播放</button>
-            <button class="pill-btn small-btn" id="next-btn">下一首</button>
-            <button class="pill-btn small-btn" id="playlist-btn">≡ 歌单</button>
+        <div class="controls-main">
+            <button class="pill-btn icon-btn" id="prev-btn">⏮</button>
+            <button class="pill-btn play-btn" id="play-btn">▶ 播放</button>
+            <button class="pill-btn icon-btn" id="next-btn">⏭</button>
+        </div>
+
+        <div class="controls-sub">
+            <button class="pill-btn list-btn" id="playlist-btn">🎵 展开歌单</button>
         </div>
 
         <div class="lyrics-box">
             <p id="lyrics-text">歌词将在这里显示...</p>
         </div>
 
-        <div class="playlist-box" id="playlist-box" style="display: none;">
-            <ul id="playlist-list"></ul>
+        <div class="playlist-wrapper" id="playlist-wrapper">
+            <div class="playlist-box">
+                <ul id="playlist-list"></ul>
+            </div>
         </div>
-        
-        <audio id="audio-player" src="music/test.mp3"></audio>
-    </div>
         
         <audio id="audio-player" src="music/test.mp3"></audio>
     </div>
