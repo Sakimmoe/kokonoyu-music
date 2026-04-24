@@ -2,22 +2,22 @@
 const playBtn = document.getElementById('play-btn');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
-const playlistBtn = document.getElementById('playlist-btn'); // 获取歌单按钮
+const playlistBtn = document.getElementById('playlist-btn');
 const audioPlayer = document.getElementById('audio-player');
 const songTitle = document.getElementById('song-title');
 const coverImg = document.getElementById('cover');
 const progressContainer = document.getElementById('progress-container');
 const progress = document.getElementById('progress');
 const lyricsText = document.getElementById('lyrics-text');
-const playlistBox = document.getElementById('playlist-box'); // 获取歌单外框
-const playlistList = document.getElementById('playlist-list'); // 获取歌单列表
+const playlistWrapper = document.getElementById('playlist-wrapper');
+const playlistList = document.getElementById('playlist-list');
 
 // ================= 2. 建立你的专属歌单 =================
 const songs = [
     {
         name: "紫宝的初见 (2026-01-13)",
         file: "test1.mp3",
-        cover: "avatar.jpg" // 【已修复】这里改回了你的 avatar.jpg
+        cover: "avatar.jpg" 
     },
     {
         name: "第二首超级好听的歌",
@@ -29,53 +29,67 @@ const songs = [
         file: "test3.mp3",
         cover: "avatar.jpg"
     }
-    // 以后只要按照这个格式往下复制增加就行，100首也没问题！
+    // 以后继续在这里加...
 ];
 
 let songIndex = 0;
 
-// ================= 3. 核心功能：加载歌曲 =================
+// ================= 3. 核心功能：带动画加载歌曲 =================
 function loadSong(song) {
-    songTitle.innerText = '♪ ' + song.name;
-    audioPlayer.src = 'music/' + song.file;
-    coverImg.src = 'images/' + song.cover;
-    lyricsText.innerText = "正在播放：" + song.name + " (歌词功能准备中...)";
+    // 1. 先让封面和标题变透明、缩小（触发 fade-out）
+    coverImg.classList.add('fade-out');
+    songTitle.classList.add('fade-out');
+
+    // 2. 等待 400 毫秒（正好是 CSS 动画的时间），等它们消失后，再换图片和文字
+    setTimeout(() => {
+        songTitle.innerText = '♪ ' + song.name;
+        audioPlayer.src = 'music/' + song.file;
+        coverImg.src = 'images/' + song.cover;
+        lyricsText.innerText = "正在播放：" + song.name + " (歌词功能准备中...)";
+        
+        // 3. 换好内容后，去掉 fade-out，它们就会丝滑地重新出现
+        coverImg.classList.remove('fade-out');
+        songTitle.classList.remove('fade-out');
+    }, 400); 
 }
 
-loadSong(songs[songIndex]);
+// 网页一打开，默认加载第一首歌（不需要动画）
+songTitle.innerText = '♪ ' + songs[songIndex].name;
+audioPlayer.src = 'music/' + songs[songIndex].file;
+coverImg.src = 'images/' + songs[songIndex].cover;
 
 // ================= 4. 控制播放、暂停、上一首、下一首 =================
 function playMusic() {
-    audioPlayer.play();
-    playBtn.innerText = '暂停';
+    // 稍微延迟一点播放，配合视觉动画
+    setTimeout(() => {
+        audioPlayer.play();
+    }, 400);
+    playBtn.innerText = '⏸ 暂停';
 }
 
 function pauseMusic() {
     audioPlayer.pause();
-    playBtn.innerText = '播放';
+    playBtn.innerText = '▶ 播放';
 }
 
 function prevMusic() {
     songIndex--;
-    if (songIndex < 0) {
-        songIndex = songs.length - 1;
-    }
+    if (songIndex < 0) { songIndex = songs.length - 1; }
     loadSong(songs[songIndex]);
-    playMusic();
+    if (playBtn.innerText.includes('暂停')) { playMusic(); }
 }
 
 function nextMusic() {
     songIndex++;
-    if (songIndex > songs.length - 1) {
-        songIndex = 0;
-    }
+    if (songIndex > songs.length - 1) { songIndex = 0; }
     loadSong(songs[songIndex]);
-    playMusic();
+    if (playBtn.innerText.includes('暂停')) { playMusic(); }
 }
 
 playBtn.addEventListener('click', () => {
-    if (playBtn.innerText === '播放') {
-        playMusic();
+    if (playBtn.innerText.includes('播放')) {
+        audioPlayer.play();
+        playBtn.innerText = '⏸ 暂停';
     } else {
         pauseMusic();
     }
@@ -102,30 +116,29 @@ function setProgress(e) {
 progressContainer.addEventListener('click', setProgress);
 audioPlayer.addEventListener('ended', nextMusic);
 
-// ================= 6. 新增：歌单列表自动生成与展开控制 =================
-
-// 循环读取你的歌单，自动把每一首歌变成列表里的一行
+// ================= 6. 歌单列表自动生成与丝滑展开 =================
 songs.forEach((song, index) => {
     const li = document.createElement('li');
-    // 列表显示：序号 + 歌名
     li.innerText = (index + 1) + ". " + song.name;
     
-    // 给列表里的每一首歌加上点击功能：点哪首就放哪首
     li.addEventListener('click', () => {
-        songIndex = index;
-        loadSong(songs[songIndex]);
-        playMusic();
+        if (songIndex !== index) {
+            songIndex = index;
+            loadSong(songs[songIndex]);
+            playMusic();
+        }
     });
-    
-    // 把这行歌塞进列表里
     playlistList.appendChild(li);
 });
 
-// 点击“≡ 歌单”按钮，切换显示/隐藏状态
+// 点击“展开歌单”按钮，使用 max-height 实现丝滑抽屉效果
 playlistBtn.addEventListener('click', () => {
-    if (playlistBox.style.display === 'none') {
-        playlistBox.style.display = 'block'; // 显示
+    if (playlistWrapper.style.maxHeight && playlistWrapper.style.maxHeight !== '0px') {
+        playlistWrapper.style.maxHeight = '0'; // 收起
+        playlistBtn.innerText = '🎵 展开歌单';
     } else {
-        playlistBox.style.display = 'none';  // 隐藏
+        // 300px 是给歌单预留的高度，如果歌单太长可以在这里加大数值
+        playlistWrapper.style.maxHeight = '300px'; // 展开
+        playlistBtn.innerText = '🎵 收起歌单';
     }
 });
