@@ -14,9 +14,21 @@
         <h2>九重紫 Kokonoe Yukari</h2>
         <p id="song-title">♪ 准备播放</p>
         
-        <audio id="audio-player" src="music/test.mp3"></audio>
+        <div class="progress-container" id="progress-container">
+            <div class="progress" id="progress"></div>
+        </div>
         
-        <button class="play-btn" id="play-btn">播放</button>
+        <div class="controls">
+            <button class="pill-btn small-btn" id="prev-btn">上一首</button>
+            <button class="pill-btn play-btn" id="play-btn">播放</button>
+            <button class="pill-btn small-btn" id="next-btn">下一首</button>
+        </div>
+
+        <div class="lyrics-box">
+            <p id="lyrics-text">歌词将在这里显示...</p>
+        </div>
+        
+        <audio id="audio-player" src="music/test.mp3"></audio>
     </div>
 
     <script src="js/script.js"></script>
